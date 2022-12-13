@@ -1,0 +1,26 @@
+# this search engine was made by chat GPT as a test.
+
+
+
+# Import necessary libraries
+import requests
+from googleapiclient.discovery import build
+
+# Set up the Google search API
+service = build("customsearch", "v1", developerKey="AIzaSyCmGi4_ME34IaixM1b_BTY4ligRRASkIoo")
+
+# Ask the user for their search query
+query = input("What do you want to search for? ")
+
+# Use the Google search API to retrieve the search results
+results = service.cse().list(q=query, cx="b42759840f7544ce6").execute()
+
+# Extract the relevant information from the search results
+for result in results["items"]:
+  title = result["title"]
+  link = result["link"]
+  snippet = result["snippet"]
+  
+  # Print the information to the user
+  print(f"{title}\n{link}\n{snippet}\n")
+
